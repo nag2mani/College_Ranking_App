@@ -1,0 +1,91 @@
+{% extends 'base.html' %}
+{% block start %}
+
+<div class="container-xxl py-5 bg-primary hero-header mb-5">
+  <div class="container my-5 py-5 px-lg-5">
+    <div class="row g-5 py-5">
+      <div class="col-12 text-center">
+        <h1 class="text-white animated zoomIn">Rank the College according to your choice</h1>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+<!-- Navbar & Hero End -->
+<div class="container-xxl py-5">
+  <div class="container px-lg-5">
+      <div class="row justify-content-center">
+          <div class="col-lg-7">
+              <div class="wow fadeInUp" data-wow-delay="0.3s">
+                  <form method="POST" enctype="multipart/form-data">
+                    {% csrf_token %}
+                      {% if messages %}
+                      {{ message.tags }}
+                      <div class="alert alert-primary font-weight-bold" role="alert">
+                          {% for message in messages %}
+                          {{ message }}
+                          {% endfor %}
+                      </div>
+                      {% endif %}
+
+                      <div class="col">
+                        <div>
+                          <p class="text-center">
+                          ['Original_Rank', 'New_Rank', 'Change', 'College', 'Fees', 'Faculty', 'SS']
+                          </p>
+                        </div>
+                          <div class="col-md-12 my-3">
+                              <div class="form-floating">
+                                  <input type="text" name="headline" required class="form-control" id="name" placeholder="News Headline">
+                                  <label for="name">Enter Parameter from above List </label>
+                              </div>
+                          </div>
+                          <div class="col-12">
+                            <button class="btn btn-primary w-100 py-3" type="submit">Find College</button>
+                        </div>
+                      </div>
+                  </form>
+              </div>
+          </div>
+      </div>
+  </div>
+</div>
+<!-- Main body for Backend-Frontend starts-->
+<div class="container-xxl py-5">
+  <div class="container px-lg-5">
+    <div class="content-container" style="overflow-x: auto;">
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <th class="text-center">Original_Rank[NIRF]</th>
+              <th class="text-center">New_Rank</th>
+              <th class="text-center">Change</th>
+              <th class="text-center">College</th>
+              <th class="text-center">Fees</th>
+              <th class="text-center">Faculty</th>
+              <th class="text-center">R & D</th>
+            </tr>
+          </thead>
+
+          <tbody>
+            {%if dict_data%}
+            {%for i in dict_data%}
+            <tr>
+              <td class="text-center">{{i.Original_Rank}}</td>
+              <td class="text-center">{{i.New_Rank}}</td>
+              <td class="text-center">{{i.Change}}</td>
+              <td class="text-center">{{i.College}}</td>
+              <td class="text-center">{{i.Fees}}</td>
+              <td class="text-center">{{i.Faculty}}</td>
+              <td class="text-center">{{i.R_and_D}}</td>
+            </tr>
+            {%endfor%}
+            {%endif%}
+          </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+</div>
+
+{%endblock%}
