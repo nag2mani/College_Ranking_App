@@ -1,2 +1,2 @@
 # College_Ranking
-You Can Rank your College According to your Parameters.
+You Can Rank any College According to your Parameters.
